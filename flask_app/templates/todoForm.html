@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css')}}"> <!-- Need to link css from a folder called static ALWAYS! -->
+    <title>Home page</title>
+</head>
+<body>
+    <form action="/todo/new" method="POST">
+        <div>
+            <label for="todo">
+                New todo:
+            </label>
+            <input type="text" id="todo" name="todo"/>
+        </div>
+        <div>
+            <label for="status">
+                Status:
+            </label>
+            <select name="status" id="status">
+                <option value="Complete">
+                    Complete
+                </option>
+                <option value="In_Progress">
+                    In Progress
+                </option>
+                <option value="Cancelled">
+                    Cancelled
+                </option>
+            </select>
+        </div>
+        <input type="hidden" value="{{session['id']}}" id="user_id" name="user_id">   <!-- If you type anything else into the select field, it'll add a new todo and the status onto the main page-->
+        <div>
+            <button type="submit">
+                Create
+            </button>
+        </div>
+        </div>
+    </form>
+    <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

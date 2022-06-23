@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css')}}"> <!-- Need to link css from a folder called static ALWAYS! -->
+    <title>Home page</title>
+</head>
+<body>
+    <h1>Welcome to the homepage {{session['first_name']}} {{session['last_name']}}. This is now with an MVC architecture.</h1>
+    <p>Number of visits: {{session["num_of_visits"]}}</p>
+    <a href="/display/user">Go to my todos</a>
+    <div>
+        <ul>
+            {% for element in list_todos: %} <!-- loop through the list_todos-->
+                <li>
+                    {{element.status}} - {{element.todo}} - {{element.created_at}} <!-- Grabs the status of each one first, dash, and then shows the todo-->
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="/todo/new">Add new todo</a>
+    <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>
